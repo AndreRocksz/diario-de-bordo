@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Diário de Bordo para registrar atividades e experiências do dia a dia."
+    />
+
+    <meta name="theme-color" content="#1f2937" />
+
+    <link rel="manifest" href="manifest.json" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Diário de Bordo</title>
+  </head>
+
+  <body>
+    <header class="cabecalho">
+      <div class="container">
+        <h1>Diário de Bordo</h1>
+        <p>Registre suas atividades e experiências.</p>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="secao-formulario" aria-labelledby="titulo-formulario">
+        <h2 id="titulo-formulario">Nova entrada</h2>
+
+        <form id="formulario-entrada">
+          <div class="campo">
+            <label for="titulo">Título</label>
+            <input
+              type="text"
+              id="titulo"
+              name="titulo"
+              placeholder="Digite o título da entrada"
+              required
+            />
+          </div>
+
+          <div class="campo">
+            <label for="data">Data</label>
+            <input type="date" id="data" name="data" required />
+          </div>
+
+          <div class="campo">
+            <label for="descricao">Descrição</label>
+            <textarea
+              id="descricao"
+              name="descricao"
+              rows="5"
+              placeholder="Descreva sua atividade..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit">Adicionar entrada</button>
+        </form>
+      </section>
+
+      <section class="secao-entradas" aria-labelledby="titulo-entradas">
+        <h2 id="titulo-entradas">Minhas entradas</h2>
+
+        <div id="lista-entradas">
+          <!-- As entradas serão inseridas pelo JavaScript -->
+        </div>
+      </section>
+
+      <section
+        class="secao-instalacao"
+        id="secao-instalacao"
+        aria-labelledby="titulo-instalacao"
+        hidden
+      >
+        <h2 id="titulo-instalacao">Instale o Diário de Bordo</h2>
+        <p>
+          Instale o aplicativo no seu dispositivo para acessá-lo rapidamente.
+        </p>
+
+        <button type="button" id="botao-instalar">
+          Instalar aplicativo
+        </button>
+      </section>
+    </main>
+
+    <footer class="rodape">
+      <div class="container">
+        <p>&copy; 2026 Diário de Bordo</p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
