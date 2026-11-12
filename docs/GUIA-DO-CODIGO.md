@@ -482,3 +482,7 @@ Para conferir entendimento, tente prever o que acontece quando salvar falha, qua
 uma cópia contém um ID conflitante e quando existe uma atualização com uma aba aberta.
 Depois siga as funções neste guia e compare a previsão. Isso avalia compreensão do
 fluxo, sem exigir decorar todas as APIs.
+
+## Correção da busca — 12/11/2026
+
+A busca passou a consultar título, projeto e descrição. Antes consultava apenas o projeto. A função calcula noTitulo, noProjeto e naDescricao com includes; só descarta o registro quando o trecho não aparece em nenhum desses campos. Por exemplo, Fiz bolo é encontrado por fiz, bolo ou fiz bolo. O filtro de datas e a exclusão dos itens da lixeira continuam valendo. A busca considera trechos contínuos, sem correção automática de erros de digitação. O rótulo agora é Buscar atividades e o cache é v12. Dois testes de regressão reproduzem o caso relatado e verificam os limites da consulta.

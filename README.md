@@ -11,7 +11,7 @@ Refatoração desta versão concluída. As validações externas ainda pendentes
 ## Funcionamento
 
 - Registre título, projeto opcional, data, resultado e aprendizados.
-- Consulte por projeto e período, da atividade mais recente para a mais antiga.
+- Busque por trechos do título, projeto ou descrição e filtre por período, da atividade mais recente para a mais antiga.
   A busca ignora acentos e maiúsculas; as datas dos limites são incluídas.
 - Mova atividades para a lixeira e restaure quando necessário, sem expiração automática.
 - Exporte uma cópia JSON com a lixeira. Importe após conferir a prévia e confirmar.
@@ -50,7 +50,7 @@ importação. Ela não é carregada automaticamente. Prefira um perfil separado 
 | JavaScript | Módulos nativos, sem framework ou biblioteca externa |
 | Node.js | 24.14.0 verificado; requisito declarado: 22 ou superior |
 | node:test e node:assert/strict | Testes nativos do Node.js |
-| Manifesto e Service Worker | Instalação opcional e offline; cache atual v11 |
+| Manifesto e Service Worker | Instalação opcional e offline; cache atual v12 |
 | Aplicação | 0.1.0 no package.json, refatoração concluída |
 
 A verificação visual usou o navegador integrado do Codex. Não foi identificada uma
@@ -98,7 +98,7 @@ incremente a versão do cache e publique o conjunto completo. Consulte o
 
 ## Verificação e dificuldades
 
-**48 testes automatizados passaram**, cobrindo dados inválidos, compatibilidade,
+**50 testes automatizados passaram**, cobrindo dados inválidos, compatibilidade,
 falha de gravação, conflito entre abas, lixeira, PWA, filtros e importação. Os testes
 simulados complementam a verificação no navegador; não a substituem.
 
@@ -129,5 +129,3 @@ registram a revisão de legibilidade feita durante o desenvolvimento.
 ## Revisão e guia de estudo
 
 Consulte a [revisão de entrega](docs/REVISAO-FINAL.md) para correções, contraste medido e verificações pendentes. O [guia detalhado do código](docs/GUIA-DO-CODIGO.md) explica armazenamento, expressões regulares, importação, PWA e testes. As imagens acima registram a etapa 3; a revisão inclui a correção posterior dos filtros em telas estreitas.
-
-

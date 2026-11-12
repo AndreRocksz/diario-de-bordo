@@ -76,3 +76,7 @@ novos ajustes no código nesta conferência. A versão do cache permanece v11.
 As validações externas listadas neste documento continuam pendentes. Este encerramento
 não equivale a aprovação em dispositivos não testados, auditoria completa de
 acessibilidade ou publicação em produção.
+
+## Correção posterior — 12/11/2026
+
+Relato: buscar palavras do título não encontrava a atividade. Causa confirmada: consulta restrita ao projeto. Corrigido para pesquisar título, projeto e descrição, com novo rótulo e cache v12. Os dois novos testes falharam antes da correção. Após a correção, os 50 testes automatizados passaram.

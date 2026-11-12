@@ -6,6 +6,21 @@ import { prepararImportacao } from "../armazenamento.js";
 const antiga = { id: 1, titulo: "Entrega", data: "2026-10-08", descricao: "Resultado", projeto: "Aplicação do cliente" };
 const recente = { ...antiga, id: 2, data: "2026-10-16" };
 
+test("busca encontra qualquer trecho do título, além do projeto e da descrição", () => {
+  const bolo = { id: 10, titulo: "Fiz bolo", projeto: "Bolo de aniversário", descricao: "Revisei a decoração", data: "2026-11-12" };
+  for (const busca of ["fiz", "bolo", "fiz bolo", "  FIZ  ", "aniversario", "decoracao"]) {
+    assert.deepEqual(filtrarAtividades([bolo], busca, "", ""), [bolo], busca);
+  }
+  assert.deepEqual(filtrarAtividades([bolo], "pão", "", ""), []);
+});
+
+test("busca por título respeita o período, a lixeira e registros sem projeto", () => {
+  const bolo = { id: 10, titulo: "Fiz bolo", descricao: "Resultado", data: "2026-11-12" };
+  const removida = { ...bolo, id: 11, excluidaEm: "2026-11-12T12:00:00Z" };
+  assert.deepEqual(filtrarAtividades([bolo, removida], "fiz", "2026-11-12", "2026-11-12"), [bolo]);
+  assert.deepEqual(filtrarAtividades([bolo], "fiz", "", "2026-11-11"), []);
+});
+
 test("consulta combina projeto sem acentos e período inclusivo, excluindo a lixeira", () => {
   const removida = { ...antiga, id: 3, excluidaEm: "2026-10-16T12:00:00Z" };
   const dados = [antiga, recente, removida];

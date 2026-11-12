@@ -187,7 +187,7 @@ function renderizarEntradas() {
   } else if (erroFiltros.textContent) {
     mensagemVazia = "Corrija o período para consultar as atividades.";
   } else if (atividadesAtivas.length > 0) {
-    mensagemVazia = "Nenhuma atividade corresponde aos filtros. Tente outro projeto ou limpe o período.";
+    mensagemVazia = "Nenhuma atividade corresponde aos filtros. Tente outro termo ou limpe o período.";
   }
 
   resumoConsulta.textContent = carregado ? `${visiveis.length} de ${atividadesAtivas.length} atividades · mais recentes primeiro` : "Histórico indisponível";

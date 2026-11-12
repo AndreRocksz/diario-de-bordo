@@ -1,10 +1,14 @@
-export function filtrarAtividades(entradas, projeto, inicio, fim) {
-  // Ignora diferenças de maiúsculas e acentos na busca pelo projeto.
-  const busca = normalizarTexto(projeto.trim());
+export function filtrarAtividades(entradas, termo, inicio, fim) {
+  // Ignora diferenças de maiúsculas e acentos nos campos pesquisados.
+  const busca = normalizarTexto(termo.trim());
   const resultado = entradas.filter((entrada) => {
     if (entrada.excluidaEm) return false;
     const contexto = entrada.projeto || "Rotina de trabalho";
-    if (!normalizarTexto(contexto).includes(busca)) return false;
+    // Procura o trecho digitado em qualquer um dos três campos da atividade.
+    const noTitulo = normalizarTexto(entrada.titulo).includes(busca);
+    const noProjeto = normalizarTexto(contexto).includes(busca);
+    const naDescricao = normalizarTexto(entrada.descricao).includes(busca);
+    if (!noTitulo && !noProjeto && !naDescricao) return false;
     // Datas no formato AAAA-MM-DD podem ser comparadas como texto, incluindo os limites.
     if (inicio && entrada.data < inicio) return false;
     if (fim && entrada.data > fim) return false;

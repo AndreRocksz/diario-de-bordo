@@ -1,5 +1,5 @@
 // Ao publicar arquivos alterados, aumente esta versão junto com a aplicação inteira.
-const VERSAO = "v11";
+const VERSAO = "v12";
 const ESCOPO = self.registration.scope;
 const PREFIXO_CACHE = `diario-de-bordo:${encodeURIComponent(ESCOPO)}:`;
 const NOME_CACHE = `${PREFIXO_CACHE}${VERSAO}`;
