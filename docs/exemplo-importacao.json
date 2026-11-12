@@ -1,0 +1,23 @@
+[
+  {
+    "id": "exemplo-portal-1",
+    "titulo": "Formulário de cadastro entregue",
+    "projeto": "Portal do cliente",
+    "data": "2026-10-16",
+    "descricao": "Concluí a validação dos campos e revisei as mensagens de erro.\nAprendizado: orientar a correção no próprio campo torna o fluxo mais claro."
+  },
+  {
+    "id": "exemplo-portal-2",
+    "titulo": "Revisão de acessibilidade",
+    "projeto": "Portal do cliente",
+    "data": "2026-10-15",
+    "descricao": "Percorri a página com o teclado e ajustei a ordem de foco. Registrei os pontos que ainda precisam de validação com leitor de tela."
+  },
+  {
+    "id": "exemplo-rotina-1",
+    "titulo": "Alinhamento das próximas entregas",
+    "projeto": "",
+    "data": "2026-10-14",
+    "descricao": "Organizei as prioridades da semana e esclareci as dependências com a equipe. Próximo passo: revisar o escopo antes de iniciar a próxima atividade."
+  }
+]

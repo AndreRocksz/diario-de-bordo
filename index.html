@@ -1,97 +1,115 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <meta
-      name="description"
-      content="Diário de Bordo para registrar atividades e experiências do dia a dia."
-    />
-
-    <meta name="theme-color" content="#1f2937" />
-
-    <link rel="manifest" href="manifest.json" />
-    <link rel="stylesheet" href="style.css" />
-
-    <title>Diário de Bordo</title>
-  </head>
-
-  <body>
-    <header class="cabecalho">
-      <div class="container">
-        <h1>Diário de Bordo</h1>
-        <p>Registre suas atividades e experiências.</p>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Acompanhe entregas e aprendizados da sua rotina profissional. Organize atividades por projeto e consulte seu histórico, mesmo offline." />
+  <meta name="theme-color" content="#193c3b" />
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Diário de Bordo — seu histórico de trabalho</title>
+</head>
+<body>
+  <a class="pular-conteudo" href="#conteudo">Pular para o conteúdo</a>
+  <header class="cabecalho">
+    <div class="container barra-superior">
+      <a class="marca" href="#conteudo"><span class="marca-simbolo" aria-hidden="true">db.</span>Diário de Bordo</a>
+      <nav aria-label="Navegação principal">
+        <a href="#historico">Histórico</a>
+        <a href="#dados">Meus dados</a>
+        <a href="#secao-instalacao">Aplicativo</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container" id="conteudo" tabindex="-1">
+    <div class="introducao">
+      <div>
+        <p class="sobretitulo">SEU PERCURSO PROFISSIONAL</p>
+        <h1>Seu trabalho tem história.</h1>
+        <p>Guarde o que você fez, o que resolveu e o que aprendeu.<br class="quebra-desktop" /> Um registro de cada vez, para enxergar o caminho percorrido.</p>
       </div>
-    </header>
-
-    <main class="container">
+      <a class="botao" href="#titulo">+ Registrar atividade</a>
+    </div>
+    <div class="mensagens" aria-label="Mensagens da aplicação">
+      <p id="status" role="status" aria-atomic="true"></p>
+      <p id="alerta" role="alert" aria-atomic="true"></p>
+    </div>
+    <div class="area-trabalho">
+      <section class="secao-entradas" id="historico" aria-labelledby="titulo-entradas">
+        <div class="cabecalho-secao"><p class="sobretitulo">CONSULTAR E REVISAR</p><h2 id="titulo-entradas" tabindex="-1">Seu histórico</h2><p>Encontre as atividades para seu próximo acompanhamento.</p></div>
+        <form id="formulario-filtros" class="filtros" aria-label="Filtrar atividades">
+          <div class="campo filtro-projeto"><label for="filtro-projeto">Filtrar por projeto</label><input type="search" id="filtro-projeto" placeholder="Nome do projeto ou rotina de trabalho" /></div>
+          <div class="campo"><label for="filtro-inicio">De</label><input type="date" id="filtro-inicio" aria-describedby="erro-filtros" /></div>
+          <div class="campo"><label for="filtro-fim">Até</label><input type="date" id="filtro-fim" aria-describedby="erro-filtros" /></div>
+          <button type="button" class="botao-secundario" id="limpar-filtros">Limpar filtros</button>
+          <p id="erro-filtros" class="erro-filtros" role="alert"></p>
+        </form>
+        <p id="resumo-consulta" role="status" aria-atomic="true"></p>
+        <div id="lista-entradas"></div>
+      </section>
       <section class="secao-formulario" aria-labelledby="titulo-formulario">
-        <h2 id="titulo-formulario">Nova entrada</h2>
-
+        <div class="cabecalho-secao"><p class="sobretitulo">UMA PAUSA PARA REGISTRAR</p><h2 id="titulo-formulario">Nova atividade</h2><p>Os detalhes de hoje fazem diferença depois.</p></div>
         <form id="formulario-entrada">
-          <div class="campo">
-            <label for="titulo">Título</label>
-            <input
-              type="text"
-              id="titulo"
-              name="titulo"
-              placeholder="Digite o título da entrada"
-              required
-            />
-          </div>
-
-          <div class="campo">
-            <label for="data">Data</label>
-            <input type="date" id="data" name="data" required />
-          </div>
-
-          <div class="campo">
-            <label for="descricao">Descrição</label>
-            <textarea
-              id="descricao"
-              name="descricao"
-              rows="5"
-              placeholder="Descreva sua atividade..."
-              required
-            ></textarea>
-          </div>
-
-          <button type="submit">Adicionar entrada</button>
+          <div class="campo"><label for="titulo">O que você fez?</label><input type="text" id="titulo" name="titulo" placeholder="Ex.: Entrega da página de cadastro" required /></div>
+          <div class="campo"><label for="projeto">Projeto ou contexto <span>(opcional)</span></label><input type="text" id="projeto" name="projeto" placeholder="Ex.: Portal do cliente" /></div>
+          <div class="campo"><label for="data">Data da atividade</label><input type="date" id="data" name="data" required /></div>
+          <div class="campo"><label for="descricao">Resultado e aprendizados</label><textarea id="descricao" name="descricao" rows="5" placeholder="Descreva a entrega, as dificuldades e o que aprendeu." aria-describedby="dica-descricao" required></textarea><p id="dica-descricao" class="ajuda">Um exemplo concreto vale mais do que uma lista de tarefas.</p></div>
+          <button type="submit" id="salvar">Salvar atividade</button>
+          <p class="nota-local">Salvo neste navegador. Sem conta e sem sincronização.</p>
         </form>
       </section>
-
-      <section class="secao-entradas" aria-labelledby="titulo-entradas">
-        <h2 id="titulo-entradas">Minhas entradas</h2>
-
-        <div id="lista-entradas">
-          <!-- As entradas serão inseridas pelo JavaScript -->
-        </div>
+    </div>
+    <details class="painel-lixeira" id="painel-lixeira">
+      <summary>Lixeira <span id="total-lixeira" class="contador">0</span></summary>
+      <section class="secao-lixeira" aria-labelledby="titulo-lixeira">
+        <h2 id="titulo-lixeira" tabindex="-1">Atividades removidas</h2>
+        <p>Você pode restaurar estas atividades a qualquer momento. Não há exclusão automática.</p>
+        <div id="lista-lixeira"></div>
       </section>
-
+    </details>
+    <div class="area-apoio">
+      <section class="secao-dados" id="dados" aria-labelledby="titulo-dados">
+        <p class="sobretitulo">SEU HISTÓRICO, COM VOCÊ</p><h2 id="titulo-dados">Cópias de segurança</h2>
+        <p id="aviso-dados">Seus registros ficam neste navegador e dispositivo. Limpar os dados do site pode apagá-los. Guarde uma cópia JSON para recuperar em outro navegador; ela inclui a lixeira.</p>
+        <div class="acoes-dados"><button type="button" id="exportar">Exportar cópia</button><button type="button" id="recarregar" class="botao-secundario">Recarregar histórico</button></div>
+        <details class="importacao"><summary>Importar uma cópia</summary>
+          <p id="dica-importacao">Escolha uma cópia JSON de até 2 MB. Você verá uma prévia antes de confirmar. Atividades repetidas serão ignoradas; conflitos não serão sobrescritos.</p>
+          <label for="arquivo-importacao">Arquivo de cópia de segurança</label><input type="file" id="arquivo-importacao" accept=".json,application/json" aria-describedby="dica-importacao" />
+          <p id="mensagem-importacao" role="status" aria-atomic="true"></p>
+          <div id="previa-importacao" hidden><p id="resumo-importacao"></p><div class="acoes-dados"><button type="button" id="confirmar-importacao" aria-describedby="resumo-importacao">Confirmar importação</button><button type="button" id="cancelar-importacao" class="botao-secundario">Cancelar</button></div></div>
+        </details>
+      </section>
       <section
         class="secao-instalacao"
         id="secao-instalacao"
         aria-labelledby="titulo-instalacao"
-        hidden
       >
-        <h2 id="titulo-instalacao">Instale o Diário de Bordo</h2>
-        <p>
-          Instale o aplicativo no seu dispositivo para acessá-lo rapidamente.
-        </p>
-
-        <button type="button" id="botao-instalar">
+        <h2 id="titulo-instalacao">Aplicativo e uso offline</h2>
+        <p id="status-conexao" role="status" aria-atomic="true"></p>
+        <p id="status-offline" role="status" aria-atomic="true">Conferindo o preparo para uso offline…</p>
+        <p id="status-atualizacao" role="status" aria-atomic="true"></p>
+        <button type="button" id="verificar-atualizacao">Verificar atualização e preparo offline</button>
+        <p id="status-instalacao" role="status" aria-atomic="true" tabindex="-1">A instalação é opcional. Você também pode usar o Diário nesta aba.</p>
+        <button type="button" id="botao-instalar" hidden>
           Instalar aplicativo
         </button>
+        <details id="instrucoes-instalacao">
+          <summary>Como instalar pelo navegador</summary>
+          <ul>
+            <li><strong>Android, Chrome ou Edge no computador:</strong> procure “Instalar aplicativo” ou “Adicionar à tela inicial” no menu do navegador ou o ícone de instalação na barra de endereço, quando disponível.</li>
+            <li><strong>iPhone ou iPad:</strong> abra o menu Compartilhar e procure “Adicionar à Tela de Início”. Confirme as opções apresentadas pelo navegador.</li>
+            <li><strong>Safari no Mac:</strong> em versões compatíveis, use Arquivo → Adicionar ao Dock.</li>
+          </ul>
+          <p>Os nomes das opções variam. Se não houver instalação disponível, continue usando esta aba. Instalar não cria backup nem sincroniza os registros. Aguarde a indicação de preparo offline antes de depender do aplicativo sem conexão.</p>
+        </details>
       </section>
-    </main>
-
-    <footer class="rodape">
-      <div class="container">
-        <p>&copy; 2026 Diário de Bordo</p>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
-  </body>
+    </div>
+    <noscript><p class="aviso-sem-js">Ative o JavaScript para consultar e registrar atividades neste navegador.</p></noscript>
+  </main>
+  <footer class="rodape"><div class="container"><p>Diário de Bordo <span>·</span> Pequenos registros. Um percurso inteiro.</p><p>Feito para acompanhar o trabalho real.</p></div></footer>
+  <script type="module" src="script.js"></script>
+  <script type="module" src="pwa.js"></script>
+</body>
 </html>
